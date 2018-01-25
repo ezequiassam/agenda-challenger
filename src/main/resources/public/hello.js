@@ -1,24 +1,58 @@
 angular.module('agenda', []).controller('portalController',
-		function($scope, $http) {
-
-			var _apiHost = 'localhost:8080/agenda';
-//			$http.get('http://' + _apiHost).then(function(response) {
-//				$scope.allAgenda = response.data;
-//			});
-			
-			$scope.findAll = function() {
-				$http.get('http://' + _apiHost).then(function(response) {
-					$scope.allAgenda = response.data;
-				});
-			}
-			
-			$scope.findById =  function findById(id) {
-				 $http.get(_apiHost + '/'+ id).then(function(response) {
-				 return response.data;
-				 });
-			}
-			
+	function($scope, $http) {
+	
+		var _apiHost = 'localhost:8080/agenda';
+		$http.get('http://' + _apiHost).then(function(response) {
+			$scope.agendas = response.data;
 		});
+		
+//		$scope.findAll = function() {
+//			$http.get('http://' + _apiHost).then(function(response) {
+//				$scope.agendas = response.data;
+//			});
+//		}
+//		
+//		$scope.findById =  function findById(id) {
+//			 $http.get(_apiHost + '/'+ id).then(function(response) {
+//			 return response.data;
+//			 });
+//		}
+	
+});
+
+
+
+
+
+//(function(angular) {
+//  angular.module('app', ['ngResource']);
+//
+//  angular.bootstrap(document.body, ['app']);
+//})(angular);
+//
+//app.factory('portalService', function() {
+//  return $resource('/agenda/:id');
+//});
+//
+//app.controller('portalController', ['$scope', 'portalService', function($scope, portalService) {
+//  $scope.agendas;
+//  portalService.query(function(data) {
+//    $scope.agendas = data;
+//  }
+//}]);
+
+//app.controller('portalController', ['$scope', '$http', function($scope, $http) {
+//  $scope.agendas;
+//  var baseUrl = '/agenda';
+//
+//  $http.get(baseUrl).then(function(response) {
+//    $scope.agendas = response.data;
+//  }, function(err) {
+//    console.log(err);
+//  });
+//}]);
+
+
 
 // angular.module('agenda').factory('portalService', ['$http', function ($http)
 // {
