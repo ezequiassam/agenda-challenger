@@ -9,6 +9,7 @@
 	<packaging>jar</packaging>
 
 	<name>agenda-challenger</name>
+	<description>Code Challenger CronApp</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -22,7 +23,6 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
 	</properties>
-
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -41,14 +41,21 @@
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
-			<scope>runtime</scope>
+			<scope>compiler</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		
 	</dependencies>
+	
 
 	<build>
 		<plugins>
@@ -59,6 +66,4 @@
 		</plugins>
 	</build>
 
-
-	<description>Code Challenger CronApp</description>
 </project>
