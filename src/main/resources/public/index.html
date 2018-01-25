@@ -1,5 +1,5 @@
 <!doctype html>
-<html ng-app="demo">
+<html ng-app="agenda">
 	<head>
 		<title>Hello AngularJS</title>
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
@@ -7,9 +7,18 @@
 	</head>
 
 	<body>
-		<div ng-controller="Hello">
-			<p>Contem {{greeting.length}} Pessoas Cadastradas</p>
-			<div ng-repeat="row in greeting">
+		<div ng-controller="portalController">
+			<p>Contem {{allAgenda.length}} Pessoas Cadastradas</p>
+			<div ng-repeat="row in allAgenda">
+				<p>ID: {{row.id}}</p>
+				<p>Nome: {{row.nome}}</p>
+				<p>Telefone {{row.telefone}}</p>
+				<p>Data {{row.data}}</p>
+				<p>Local {{row.local}}</p>
+			</div>
+			
+			<p>Contem {{findAll.length}} Pessoas Cadastradas</p>
+			<div ng-repeat="row in findAll">
 				<p>ID: {{row.id}}</p>
 				<p>Nome: {{row.nome}}</p>
 				<p>Telefone {{row.telefone}}</p>
