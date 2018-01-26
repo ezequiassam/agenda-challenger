@@ -20,6 +20,13 @@
 
 			<div class="col-md-12">
 				<h4>Agenda de Eventos</h4>
+				<div class="col text-right">
+					<button type="button" class="btn btn-sm btn-primary btn-create"
+						data-title="New" data-toggle="modal" data-target="#edit"
+						data-placement="top" rel="tooltip" ng-click="novaLinha();">+Novo</button>
+				</div>
+				<div class="clearfix"></div>
+				<br>
 				<div class="table-responsive">
 					<table id="mytable" class="table table-bordred table-striped">
 						<thead>
@@ -43,14 +50,15 @@
 								<td><p>
 										<button class="btn btn-primary btn-xs" data-title="Edit"
 											data-toggle="modal" data-target="#edit" data-placement="top"
-											rel="tooltip">
+											rel="tooltip" ng-click="selectLinha(row);">
 											<span class="glyphicon glyphicon-pencil"></span>
 										</button>
 									</p></td>
 								<td><p>
 										<button class="btn btn-danger btn-xs" data-title="Delete"
 											data-toggle="modal" data-target="#delete"
-											data-placement="top" rel="tooltip">
+											data-placement="top" rel="tooltip"
+											ng-click="selectLinha(row);">
 											<span class="glyphicon glyphicon-trash"></span>
 										</button>
 									</p></td>
@@ -80,28 +88,41 @@
 								<div class="modal-header">
 									<button type="button" class="close" data-dismiss="modal"
 										aria-hidden="true">×</button>
-									<h4 class="modal-title custom_align" id="Heading">Edite
+									<h4 class="modal-title custom_align" id="Heading">Editando
 										Sua Agenda</h4>
 								</div>
 								<div class="modal-body">
 									<div class="form-group">
-										<input class="form-control " type="text" placeholder="Nome">
+										Nome:<input class="form-control " type="text"
+											placeholder="Nome" ng-value="linha.nome"
+											ng-model="linha.nome">
 									</div>
 									<div class="form-group">
-										<input class="form-control " type="text"
-											placeholder="Telefone">
+										Telefone: <input class="form-control " type="text"
+											placeholder="Telefone" ng-value="linha.telefone"
+											ng-model="linha.telefone">
 									</div>
 									<div class="form-group">
-										<input class="form-control" type="datetime" placeholder="Data"></input>
+										Data: <input class="form-control" type="text"
+											placeholder="Data" ng-value="linha.data"
+											ng-model="linha.data"></input>
 									</div>
 									<div class="form-group">
-										<input class="form-control " type="text" placeholder="Local">
+										Local: <input class="form-control " type="text"
+											placeholder="Local" ng-value="linha.local"
+											ng-model="linha.local">
 									</div>
 								</div>
-								<div class="modal-footer ">
+								<div class="modal-footer " ng-if="novo">
 									<button type="button" class="btn btn-warning btn-lg"
-										style="width: 100%;">
-										<span class="glyphicon glyphicon-ok-sign"></span> Atualizar
+										style="width: 100%;" ng-click="createAgenda(linha);" data-dismiss="modal">
+										<span class="glyphicon glyphicon-ok-sign"> Criar</span>
+									</button>
+								</div>
+								<div class="modal-footer " ng-if="!novo">
+									<button type="button" class="btn btn-warning btn-lg"
+										style="width: 100%;" ng-click="updateAgenda(linha);" data-dismiss="modal">
+										<span class="glyphicon glyphicon-ok-sign"> Atualizar</span>
 									</button>
 								</div>
 							</div>
@@ -116,7 +137,7 @@
 							<div class="modal-content">
 								<div class="modal-header">
 									<button type="button" class="close" data-dismiss="modal"
-										aria-hidden="true">×</button>
+										aria-hidden="true" ng-click="clearLinha();">×</button>
 									<h4 class="modal-title custom_align" id="Heading">Deletar
 										Sua Agenda</h4>
 								</div>
@@ -124,15 +145,16 @@
 
 									<div class="alert alert-warning">
 										<span class="glyphicon glyphicon-warning-sign"></span> Você
-										tem certeza que quer deletar?
+										tem certeza que quer deletar <span ng-bind="linha.nome"></span>?
 									</div>
 
 								</div>
 								<div class="modal-footer ">
-									<button type="button" class="btn btn-warning">
+									<button type="button" class="btn btn-warning"
+										ng-click="deleteAgenda(linha);" data-dismiss="modal">
 										<span class="glyphicon glyphicon-ok-sign"></span> Sim
 									</button>
-									<button type="button" class="btn btn-warning">
+									<button type="button" class="btn btn-warning" data-dismiss="modal">
 										<span class="glyphicon glyphicon-remove"></span> Não
 									</button>
 								</div>

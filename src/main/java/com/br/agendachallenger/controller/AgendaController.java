@@ -46,7 +46,7 @@ public class AgendaController {
 
 	}
 
-	@PutMapping(value = "/{id}", produces="application/json")
+	@PutMapping(value = "/{id}", produces=	"application/json")
 	public Agenda update(@PathVariable("id") long id, @RequestBody @Valid Agenda agenda) {
 		Agenda a  = provider.findOne(id);
 		if (a == null) {
